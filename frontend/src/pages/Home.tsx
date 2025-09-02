@@ -24,6 +24,23 @@ const Home = () => {
 		<div className={styles.parent}>
 			{/* Hero Section */}
 			<section className={styles.hero}>
+				{/* Neural Network Background Elements */}
+				<div className={styles.neuralParticles}>
+					<div className={styles.particle}></div>
+					<div className={styles.particle}></div>
+					<div className={styles.particle}></div>
+					<div className={styles.particle}></div>
+					<div className={styles.particle}></div>
+					<div className={styles.particle}></div>
+				</div>
+				<div className={styles.neuralConnections}>
+					<div className={styles.connection}></div>
+					<div className={styles.connection}></div>
+					<div className={styles.connection}></div>
+					<div className={styles.connection}></div>
+					<div className={styles.connection}></div>
+				</div>
+				
 				<div className={styles.heroContent}>
 					<motion.div
 						variants={staggerContainer}
