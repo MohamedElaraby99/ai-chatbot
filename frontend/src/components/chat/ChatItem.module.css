@@ -21,7 +21,7 @@
 	box-sizing: border-box;
 	padding: 1rem 1.5rem;
 	transition: all 0.3s ease;
-	max-width: 85%;
+	max-width: 100%;
 	border-radius: 20px;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.05);
@@ -30,13 +30,13 @@
 /* Ensure messages don't get too wide on large screens like ChatGPT */
 @media (min-width: 1025px) {
 	.parent {
-		max-width: 75%;
+		max-width: 100%;
 	}
 }
 
 @media (min-width: 1440px) {
 	.parent {
-		max-width: 70%;
+		max-width: 100%;
 	}
 }
 
@@ -174,7 +174,7 @@
 	
 	.parent {
 		padding: 0.75rem 1rem;
-		max-width: 90%;
+		max-width: 100%;
 	}
 	
 	.avatar {
@@ -197,7 +197,7 @@
 
 @media (max-width: 480px) {
 	.parent {
-		max-width: 95%;
+		max-width: 100%;
 		padding: 0.5rem 0.75rem;
 	}
 	
