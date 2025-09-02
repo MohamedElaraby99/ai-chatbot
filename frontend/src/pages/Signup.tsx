@@ -86,8 +86,8 @@ const Signup = () => {
 						name='email'
 						type='text'
 						required={true}
-						maxLength={20}
-						minLength={5}
+						maxLength={200}
+						minLength={0}
 						label='E-Mail'
 						onChange={() => {}}
 						inputPH='name@example.com'

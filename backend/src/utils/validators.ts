@@ -27,7 +27,7 @@ export const loginValidator = [
 
 export const signUpValidator = [
 	body("name").trim().notEmpty().withMessage("Name is required"),
-	body("email").trim().isEmail().withMessage("Email is not valid"),
+	body("email").trim().notEmpty().withMessage("Email is required"),
 	body("password")
 		.trim()
 		.isLength({ min: 8, max: 15 })
