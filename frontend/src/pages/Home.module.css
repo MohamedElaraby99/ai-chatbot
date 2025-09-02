@@ -607,6 +607,10 @@
 }
 
 @media (max-width: 768px) {
+	.hero {
+		padding-top: calc(70px + 2rem); /* Header height + extra spacing */
+	}
+	
 	.heroContent {
 		grid-template-columns: 1fr;
 		gap: 3rem;
@@ -662,7 +666,7 @@
 
 @media (max-width: 480px) {
 	.hero {
-		padding: 1rem 0.5rem;
+		padding: calc(70px + 1rem) 0.5rem 1rem 0.5rem; /* Header height + spacing */
 	}
 	
 	.ctaContainer {

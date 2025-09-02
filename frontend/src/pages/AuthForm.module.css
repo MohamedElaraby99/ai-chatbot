@@ -5,7 +5,7 @@
 	justify-content: center;
 	width: 100vw;
 	min-height: 100vh;
-	padding: 2rem 1rem;
+	padding: calc(80px + 2rem) 1rem 2rem 1rem; /* Account for header height + spacing */
 }
 
 .parent > div:nth-child(1) {
@@ -94,6 +94,7 @@
 		flex-direction: column;
 		gap: 1.5rem;
 		width: 92%;
+		padding: calc(70px + 1.5rem) 1rem 1.5rem 1rem; /* Account for mobile header height + spacing */
 	}
 
 	.parent > div:nth-child(1),

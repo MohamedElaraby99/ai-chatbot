@@ -118,7 +118,7 @@
 	.parent,
 	.parent_reverse {
 		flex-direction: column;
-		padding: 3rem 1rem;
+		padding: calc(70px + 3rem) 1rem 3rem 1rem; /* Account for header + spacing */
 		text-align: center;
 		gap: 3rem;
 	}
