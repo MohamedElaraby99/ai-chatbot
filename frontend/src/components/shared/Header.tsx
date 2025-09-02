@@ -1,5 +1,5 @@
 import Logo from "./Logo";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 import styles from "./Header.module.css";
@@ -24,12 +24,23 @@ const Header = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
 
+	// Close mobile menu when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (isMobileMenuOpen && !(event.target as Element).closest(`.${styles.mobileMenuButton}`)) {
+				setIsMobileMenuOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, [isMobileMenuOpen]);
+
 	let links;
 
 	if (auth?.isLoggedIn) {
 		links = (
 			<>
-				
 				<NavigationLink to='/' text='Logout' onClick={auth.logout} />
 			</>
 		);
@@ -43,49 +54,74 @@ const Header = () => {
 	}
 
 	return (
-		<header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+		<motion.header 
+			className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}
+			initial={{ y: -100, opacity: 0 }}
+			animate={{ y: 0, opacity: 1 }}
+			transition={{ duration: 0.6, ease: "easeOut" }}
+		>
 			<div className={styles.container}>
 				{/* Logo Section */}
 				<motion.div 
 					className={styles.logoSection}
 					whileHover={{ scale: 1.05 }}
-					transition={{ duration: 0.2 }}
+					whileTap={{ scale: 0.95 }}
+					transition={{ duration: 0.2, ease: "easeInOut" }}
 				>
 					<Logo />
 				</motion.div>
 
 				{/* Desktop Navigation */}
-				<nav className={styles.desktopNav}>
+				<motion.nav 
+					className={styles.desktopNav}
+					initial={{ opacity: 0, x: 20 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+				>
 					<div className={styles.navLinks}>
 						{links}
 					</div>
-				</nav>
+				</motion.nav>
 
 				{/* Mobile Menu Button */}
-				<button 
+				<motion.button 
 					className={styles.mobileMenuButton}
 					onClick={toggleMobileMenu}
 					aria-label="Toggle mobile menu"
+					whileHover={{ scale: 1.05 }}
+					whileTap={{ scale: 0.95 }}
+					transition={{ duration: 0.2, ease: "easeInOut" }}
 				>
 					<span className={`${styles.hamburger} ${isMobileMenuOpen ? styles.active : ''}`}></span>
-				</button>
+				</motion.button>
 			</div>
 
 			{/* Mobile Menu */}
-			<motion.div 
-				className={styles.mobileMenu}
-				initial={{ opacity: 0, height: 0 }}
-				animate={{ 
-					opacity: isMobileMenuOpen ? 1 : 0, 
-					height: isMobileMenuOpen ? 'auto' : 0 
-				}}
-				transition={{ duration: 0.3, ease: "easeInOut" }}
-			>
-				<div className={styles.mobileNavLinks}>
-					{links}
-				</div>
-			</motion.div>
-		</header>
+			<AnimatePresence>
+				{isMobileMenuOpen && (
+					<motion.div 
+						className={styles.mobileMenu}
+						initial={{ opacity: 0, height: 0 }}
+						animate={{ opacity: 1, height: 'auto' }}
+						exit={{ opacity: 0, height: 0 }}
+						transition={{ 
+							duration: 0.4, 
+							ease: "easeInOut",
+							height: { duration: 0.3 }
+						}}
+					>
+						<motion.div 
+							className={styles.mobileNavLinks}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.4, delay: 0.1 }}
+						>
+							{links}
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</motion.header>
 	);
 };
 

@@ -8,8 +8,7 @@ import styles from "./Home.module.css";
 const Home = () => {
 	const fadeInUp = {
 		initial: { opacity: 0, y: 60 },
-		animate: { opacity: 1, y: 0 },
-		transition: { duration: 0.8, ease: "easeOut" }
+		animate: { opacity: 1, y: 0 }
 	};
 
 	const staggerContainer = {
@@ -22,25 +21,25 @@ const Home = () => {
 
 	return (
 		<div className={styles.parent}>
+			{/* Neural Network Background Elements - Now covers entire page */}
+			<div className={styles.neuralParticles}>
+				<div className={styles.particle}></div>
+				<div className={styles.particle}></div>
+				<div className={styles.particle}></div>
+				<div className={styles.particle}></div>
+				<div className={styles.particle}></div>
+				<div className={styles.particle}></div>
+			</div>
+			<div className={styles.neuralConnections}>
+				<div className={styles.connection}></div>
+				<div className={styles.connection}></div>
+				<div className={styles.connection}></div>
+				<div className={styles.connection}></div>
+				<div className={styles.connection}></div>
+			</div>
+
 			{/* Hero Section */}
 			<section className={styles.hero}>
-				{/* Neural Network Background Elements */}
-				<div className={styles.neuralParticles}>
-					<div className={styles.particle}></div>
-					<div className={styles.particle}></div>
-					<div className={styles.particle}></div>
-					<div className={styles.particle}></div>
-					<div className={styles.particle}></div>
-					<div className={styles.particle}></div>
-				</div>
-				<div className={styles.neuralConnections}>
-					<div className={styles.connection}></div>
-					<div className={styles.connection}></div>
-					<div className={styles.connection}></div>
-					<div className={styles.connection}></div>
-					<div className={styles.connection}></div>
-				</div>
-				
 				<div className={styles.heroContent}>
 					<motion.div
 						variants={staggerContainer}
@@ -48,16 +47,16 @@ const Home = () => {
 						animate="animate"
 						className={styles.heroText}
 					>
-						<motion.h2 variants={fadeInUp} className={styles.subtitle}>
-							🚀 Fikra AI
+						<motion.h2 variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.subtitle}>
+							 Fikra AI
 						</motion.h2>
-						<motion.h1 variants={fadeInUp} className={styles.title}>
+						<motion.h1 variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.title}>
 							Your Own Next-Gen <span className={styles.highlight}>Personal Chatbot</span>
 						</motion.h1>
-						<motion.p variants={fadeInUp} className={styles.description}>
-							💡 Developed by Fikra Software, Fikra AI is your smart companion for learning, work, and daily life.
+						<motion.p variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.description}>
+							 Developed by Fikra Software, Fikra AI is your smart companion for learning, work, and daily life.
 						</motion.p>
-						<motion.div variants={fadeInUp} className={styles.ctaContainer}>
+						<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.ctaContainer}>
 							<NavLink to='/login' className={styles.primaryBtn}>
 								Get Started For Free
 							</NavLink>
@@ -70,6 +69,7 @@ const Home = () => {
 						variants={fadeInUp}
 						initial="initial"
 						animate="animate"
+						transition={{ duration: 0.8, ease: "easeOut" }}
 						className={styles.heroImage}
 					>
 						<img src={mainBot} alt="Fikra AI Chat Bot" />
@@ -86,37 +86,37 @@ const Home = () => {
 					viewport={{ once: true }}
 					className={styles.featuresContainer}
 				>
-					<motion.h2 variants={fadeInUp} className={styles.featuresTitle}>
-						✨ Why Fikra AI?
+					<motion.h2 variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.featuresTitle}>
+						 Why Fikra AI?
 					</motion.h2>
 					<div className={styles.featuresGrid}>
-						<motion.div variants={fadeInUp} className={styles.featureCard}>
-							<div className={styles.featureIcon}>🚀</div>
+						<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.featureCard}>
+							
 							<h3>Next-Generation Platform</h3>
 							<p>Cutting-edge AI technology tailored to your needs</p>
 						</motion.div>
-						<motion.div variants={fadeInUp} className={styles.featureCard}>
-							<div className={styles.featureIcon}>🤖</div>
+						<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.featureCard}>
+							
 							<h3>Personal Chatbot</h3>
 							<p>Get assistance, insights, and answers instantly</p>
 						</motion.div>
-						<motion.div variants={fadeInUp} className={styles.featureCard}>
-							<div className={styles.featureIcon}>🔒</div>
+						<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.featureCard}>
+							
 							<h3>Secure & Confidential</h3>
 							<p>Your conversations stay private and protected</p>
 						</motion.div>
-						<motion.div variants={fadeInUp} className={styles.featureCard}>
-							<div className={styles.featureIcon}>💫</div>
+						<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.featureCard}>
+							
 							<h3>Seamless Experience</h3>
 							<p>Natural, user-friendly interface designed for everyone</p>
 						</motion.div>
-						<motion.div variants={fadeInUp} className={styles.featureCard}>
-							<div className={styles.featureIcon}>🎯</div>
+						<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.featureCard}>
+							
 							<h3>All-in-One Support</h3>
 							<p>From business to education to personal queries</p>
 						</motion.div>
-						<motion.div variants={fadeInUp} className={styles.featureCard}>
-							<div className={styles.featureIcon}>⚡</div>
+						<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.featureCard}>
+						
 							<h3>Lightning Fast</h3>
 							<p>Powered by Gemini 2.0 for instant intelligent responses</p>
 						</motion.div>
@@ -133,7 +133,7 @@ const Home = () => {
 					viewport={{ once: true }}
 					className={styles.benefitsContainer}
 				>
-					<motion.div variants={fadeInUp} className={styles.benefitsText}>
+					<motion.div variants={fadeInUp} transition={{ duration: 0.8, ease: "easeOut" }} className={styles.benefitsText}>
 						<p>🔹 With Fikra AI, conversations feel effortless, intelligent, and secure.</p>
 						<p>🔹 Unlock the power of AI – built to empower your ideas and accelerate your growth.</p>
 					</motion.div>
