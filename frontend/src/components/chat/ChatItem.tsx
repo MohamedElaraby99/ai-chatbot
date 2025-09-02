@@ -36,38 +36,42 @@ const ChatItem = (props: Props) => {
 	};
 
 	const botMsg = (
-		<motion.div 
-			className={`${styles.parent} ${styles.bot_parent}`}
-			variants={messageVariants}
-			initial="hidden"
-			animate="visible"
-		>
-			<div className={`${styles.avatar}`}>
-				<img src={botIcon} alt='chat bot icon'></img>
-			</div>
-			<div className={`${styles.msg} markdown-body`}>
-                <ReactMarkdown remarkPlugins={[reactGFM]} rehypePlugins={[rehypeHighlight]}>  
-                    {props.content}
-                </ReactMarkdown>
-			</div>
-		</motion.div>
+		<div className={styles.messageWrapper}>
+			<motion.div 
+				className={`${styles.parent} ${styles.bot_parent}`}
+				variants={messageVariants}
+				initial="hidden"
+				animate="visible"
+			>
+				<div className={`${styles.avatar}`}>
+					<img src={botIcon} alt='chat bot icon'></img>
+				</div>
+				<div className={`${styles.msg} ${styles.bot_msg} markdown-body`}>
+					<ReactMarkdown remarkPlugins={[reactGFM]} rehypePlugins={[rehypeHighlight]}>  
+						{props.content}
+					</ReactMarkdown>
+				</div>
+			</motion.div>
+		</div>
 	);
 
 	const userMsg = (
-		<motion.div 
-			className={`${styles.parent} ${styles.user_parent}`}
-			variants={messageVariants}
-			initial="hidden"
-			animate="visible"
-		>
-			<div className={`${styles.avatar} ${styles.user_avatar}`}>
-				{auth?.user?.name?.[0] || 'U'}
-				{auth?.user?.name?.split(" ")?.[1]?.[0] || ''}
-			</div>
-			<div className={styles.msg}>
-				<p>{props.content}</p>
-			</div>
-		</motion.div>
+		<div className={styles.messageWrapper}>
+			<motion.div 
+				className={`${styles.parent} ${styles.user_parent}`}
+				variants={messageVariants}
+				initial="hidden"
+				animate="visible"
+			>
+				<div className={`${styles.avatar} ${styles.user_avatar}`}>
+					{auth?.user?.name?.[0] || 'U'}
+					{auth?.user?.name?.split(" ")?.[1]?.[0] || ''}
+				</div>
+				<div className={styles.msg}>
+					<p>{props.content}</p>
+				</div>
+			</motion.div>
+		</div>
 	);
 
 	return (

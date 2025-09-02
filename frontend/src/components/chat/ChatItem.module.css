@@ -1,12 +1,27 @@
+/* Message Wrapper for positioning */
+.messageWrapper {
+	display: flex;
+	width: 100%;
+	margin: 1.5rem 0;
+}
+
+.messageWrapper:has(.user_parent) {
+	justify-content: flex-end;
+}
+
+.messageWrapper:has(.bot_parent) {
+	justify-content: flex-start;
+}
+
+/* ChatGPT-like Chat Layout */
 .parent {
 	display: flex;
-	flex-direction: row;
-    align-items: flex-start;
-	margin: 1.5rem 1rem;
+	align-items: flex-start;
 	box-sizing: border-box;
-	padding: 1rem;
-	border-radius: 20px;
+	padding: 1rem 1.5rem;
 	transition: all 0.3s ease;
+	max-width: 80%;
+	border-radius: 20px;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -16,26 +31,44 @@
 	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
+/* Bot Message (AI) - Left Side */
 .bot_parent {
+	flex-direction: row;
+	justify-content: flex-start;
 	background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
 	border-left: 4px solid #4f46e5;
 }
 
+.bot_parent .avatar {
+	margin-right: 1rem;
+	margin-left: 0;
+}
+
+.bot_parent .msg {
+	text-align: left;
+}
+
+/* User Message - Right Side */
 .user_parent {
+	flex-direction: row-reverse;
+	justify-content: flex-end;
 	background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-	border-left: 4px solid #22c55e;
+	border-right: 4px solid #22c55e;
 }
 
-.avatar > img {
-	max-height: 100%;
-	max-width: 100%;
-	border-radius: 50%;
+.user_parent .avatar {
+	margin-left: 1rem;
+	margin-right: 0;
 }
 
+.user_parent .msg {
+	text-align: right;
+}
+
+/* Avatar Styles */
 .avatar {
-	margin: 0 1rem 0 0;
 	width: 3.5rem;
-    height: 3.5rem;
+	height: 3.5rem;
 	padding: 0.5rem;
 	display: flex;
 	align-items: center;
@@ -43,11 +76,18 @@
 	border-radius: 50%;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 	transition: all 0.3s ease;
+	flex-shrink: 0;
 }
 
 .avatar:hover {
 	transform: scale(1.05);
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.avatar > img {
+	max-height: 100%;
+	max-width: 100%;
+	border-radius: 50%;
 }
 
 .user_avatar {
@@ -58,14 +98,15 @@
 	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.msg{
-    font-size: 1.1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 100%;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
+/* Message Styles */
+.msg {
+	font-size: 1.1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.9);
+	width: 100%;
 }
 
 .msg p {
@@ -109,28 +150,95 @@
 	margin: 0.5rem 0;
 }
 
-.spinner{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+/* RTL Support for Arabic */
+[dir="rtl"] .messageWrapper:has(.user_parent) {
+	justify-content: flex-start;
 }
 
-/* Responsive design */
+[dir="rtl"] .messageWrapper:has(.bot_parent) {
+	justify-content: flex-end;
+}
+
+[dir="rtl"] .bot_parent {
+	border-left: none;
+	border-right: 4px solid #4f46e5;
+}
+
+[dir="rtl"] .user_parent {
+	border-right: none;
+	border-left: 4px solid #22c55e;
+}
+
+[dir="rtl"] .msg {
+	font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+[dir="rtl"] .user_avatar {
+	font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+[dir="rtl"] .msg h1, [dir="rtl"] .msg h2, [dir="rtl"] .msg h3, 
+[dir="rtl"] .msg h4, [dir="rtl"] .msg h5, [dir="rtl"] .msg h6 {
+	font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+[dir="rtl"] .msg blockquote {
+	border-left: none;
+	border-right: 4px solid #4f46e5;
+	padding-left: 0;
+	padding-right: 1rem;
+}
+
+[dir="rtl"] .msg ul, [dir="rtl"] .msg ol {
+	padding-left: 0;
+	padding-right: 1.5rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+	.messageWrapper {
+		margin: 1rem 0;
+	}
+	
 	.parent {
-		margin: 1rem 0.5rem;
-		padding: 0.75rem;
+		padding: 0.75rem 1rem;
+		max-width: 90%;
 	}
 	
 	.avatar {
 		width: 3rem;
 		height: 3rem;
-		margin: 0 0.75rem 0 0;
+	}
+	
+	.bot_parent .avatar {
+		margin-right: 0.75rem;
+	}
+	
+	.user_parent .avatar {
+		margin-left: 0.75rem;
 	}
 	
 	.msg {
 		font-size: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.parent {
+		max-width: 95%;
+		padding: 0.5rem 0.75rem;
+	}
+	
+	.avatar {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+	
+	.bot_parent .avatar {
+		margin-right: 0.5rem;
+	}
+	
+	.user_parent .avatar {
+		margin-left: 0.5rem;
 	}
 }

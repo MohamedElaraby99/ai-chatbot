@@ -172,8 +172,7 @@ const Chat = () => {
 				<img alt='no msg bot' src={noMsgBot}></img>
 			</motion.div>
 			<p>
-				It's quiet in here! Be the first to break the silence and send a message
-				to get the conversation going.
+				How can I help you today?
 			</p>
 			<small className={styles.hint}>
 				💡 Press Enter to send, Shift+Enter for new line
@@ -233,7 +232,7 @@ const Chat = () => {
 							ref={inputRef}
 							rows={1}
 							disabled={isLoadingChats || isLoading}
-							placeholder='Type your message here... (Enter to send, Shift+Enter for new line)'
+							placeholder='Message Fikra Ai...'
 							onKeyDown={handleKeyPress}
 							onInput={(e) => {
 								// Auto-resize textarea

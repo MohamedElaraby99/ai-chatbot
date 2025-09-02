@@ -1,31 +1,291 @@
-.parent {
+/* Modern Header Styles */
+.header {
 	position: fixed;
 	top: 0;
 	left: 0;
-    height: 6vh;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    box-sizing: border-box;
-    padding: 0.5rem 1.2rem 0.5rem 1rem;
-    margin-top: 10px;
-    z-index: 2;
+	right: 0;
+	z-index: 1000;
+	background: rgba(15, 20, 25, 0.8);
+	backdrop-filter: blur(20px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	padding: 0;
 }
 
-.parent > div:nth-child(1){
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+.header.scrolled {
+	background: rgba(15, 20, 25, 0.95);
+	backdrop-filter: blur(30px);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.parent > div:nth-child(2){
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 70px;
+}
+
+/* Logo Section */
+.logoSection {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+/* Desktop Navigation */
+.desktopNav {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+.navLinks {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+/* Language Toggle Button */
+.languageToggle {
+	position: relative;
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 12px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	cursor: pointer;
+	font-size: 0.9rem;
+	font-weight: 600;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	overflow: hidden;
+}
+
+.languageToggle::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+	transition: left 0.5s;
+}
+
+.languageToggle:hover::before {
+	left: 100%;
+}
+
+.languageToggle:hover {
+	box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+	transform: translateY(-2px);
+}
+
+.languageToggle:active {
+	transform: translateY(0);
+}
+
+.languageText {
+	position: relative;
+	z-index: 1;
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* RTL Support for Arabic text in button */
+[dir="rtl"] .languageText {
+	font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Mobile Menu Button */
+.mobileMenuButton {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 1001;
+}
+
+.hamburger {
+	width: 24px;
+	height: 2px;
+	background: white;
+	border-radius: 2px;
+	transition: all 0.3s ease;
+	position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 2px;
+	background: white;
+	border-radius: 2px;
+	transition: all 0.3s ease;
+}
+
+.hamburger::before {
+	transform: translateY(-8px);
+}
+
+.hamburger::after {
+	transform: translateY(8px);
+}
+
+.hamburger.active {
+	background: transparent;
+}
+
+.hamburger.active::before {
+	transform: rotate(45deg);
+}
+
+.hamburger.active::after {
+	transform: rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+	display: none;
+	background: rgba(15, 20, 25, 0.98);
+	backdrop-filter: blur(30px);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	overflow: hidden;
+}
+
+.mobileNavLinks {
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	align-items: center;
+}
+
+.mobileLanguageToggle {
+	width: 100%;
+	padding: 1rem 2rem;
+	border: none;
+	border-radius: 12px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.mobileLanguageToggle:hover {
+	box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* RTL Support for header layout */
+[dir="rtl"] .container {
+	flex-direction: row-reverse;
+}
+
+[dir="rtl"] .desktopNav {
+	flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navLinks {
+	flex-direction: row-reverse;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.container {
+		padding: 0 1rem;
+		height: 60px;
+	}
+
+	.desktopNav {
+		display: none;
+	}
+
+	.mobileMenuButton {
+		display: flex;
+	}
+
+	.mobileMenu {
+		display: block;
+	}
+
+	.header {
+		padding: 0;
+	}
+}
+
+@media (max-width: 480px) {
+	.container {
+		padding: 0 0.75rem;
+	}
+
+	.mobileNavLinks {
+		padding: 1.5rem;
+	}
+}
+
+/* Animation for mobile menu items */
+.mobileNavLinks > * {
+	animation: slideInUp 0.3s ease forwards;
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.mobileNavLinks > *:nth-child(1) { animation-delay: 0.1s; }
+.mobileNavLinks > *:nth-child(2) { animation-delay: 0.2s; }
+.mobileNavLinks > *:nth-child(3) { animation-delay: 0.3s; }
+.mobileNavLinks > *:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Hover effects for navigation links */
+.navLinks a {
+	position: relative;
+	transition: color 0.3s ease;
+}
+
+.navLinks a::after {
+	content: '';
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: linear-gradient(90deg, #667eea, #764ba2);
+	transition: width 0.3s ease;
+}
+
+.navLinks a:hover::after {
+	width: 100%;
+}
+
+/* Glassmorphism effect enhancement */
+.header::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+	pointer-events: none;
 }
