@@ -2,3 +2,16 @@
     max-height: auto;
     max-width: 100%;
 }
+
+@media (max-width: 768px) {
+    .parent {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .parent > img {
+        max-width: 80%;
+    }
+}

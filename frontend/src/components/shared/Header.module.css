@@ -153,10 +153,8 @@
 }
 
 .mobileNavLinks {
-	padding: 2.5rem;
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
 	align-items: center;
 }
 
@@ -187,10 +185,6 @@
 @media (max-width: 480px) {
 	.container {
 		padding: 0 1rem;
-	}
-
-	.mobileNavLinks {
-		padding: 2rem;
 	}
 }
 

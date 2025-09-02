@@ -1,6 +1,7 @@
 import Logo from "./Logo";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
 import { useAuth } from "../../context/context";
@@ -27,7 +28,10 @@ const Header = () => {
 	// Close mobile menu when clicking outside
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (isMobileMenuOpen && !(event.target as Element).closest(`.${styles.mobileMenuButton}`)) {
+			const target = event.target as Element;
+			const clickedInsideMenu = !!target.closest(`.${styles.mobileMenu}`);
+			const clickedMenuButton = !!target.closest(`.${styles.mobileMenuButton}`);
+			if (isMobileMenuOpen && !clickedInsideMenu && !clickedMenuButton) {
 				setIsMobileMenuOpen(false);
 			}
 		};
@@ -47,8 +51,8 @@ const Header = () => {
 	} else {
 		links = (
 			<>
-				<NavigationLink to='/login' text='Sign In'></NavigationLink>
-				<NavigationLink to='/signup' text='Create Account'></NavigationLink>
+				<NavigationLink to='/login' text='Sign In' onClick={async () => { setIsMobileMenuOpen(false); }}></NavigationLink>
+				<NavigationLink to='/signup' text='Create Account' onClick={async () => { setIsMobileMenuOpen(false); }}></NavigationLink>
 			</>
 		);
 	}
@@ -62,14 +66,16 @@ const Header = () => {
 		>
 			<div className={styles.container}>
 				{/* Logo Section */}
-				<motion.div 
-					className={styles.logoSection}
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
-					transition={{ duration: 0.2, ease: "easeInOut" }}
-				>
-					<Logo />
-				</motion.div>
+				<Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+					<motion.div 
+						className={styles.logoSection}
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						transition={{ duration: 0.2, ease: "easeInOut" }}
+					>
+						<Logo />
+					</motion.div>
+				</Link>
 
 				{/* Desktop Navigation */}
 				<motion.nav 

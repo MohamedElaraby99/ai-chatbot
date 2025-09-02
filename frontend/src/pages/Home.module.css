@@ -1,7 +1,7 @@
 .parent {
 	width: 100%;
 	min-height: 100vh;
-	background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+	background: linear-gradient(135deg, #050709 0%, #0a0d12 100%);
 	overflow-x: hidden;
 	position: relative;
 }
@@ -15,10 +15,10 @@
 	right: 0;
 	bottom: 0;
 	background: 
-		radial-gradient(circle at 20% 30%, rgba(0, 206, 209, 0.1) 0%, transparent 50%),
-		radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
-		radial-gradient(circle at 40% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
-	z-index: 1;
+		radial-gradient(circle at 20% 30%, rgba(0, 206, 209, 0.07) 0%, transparent 50%),
+		radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.07) 0%, transparent 50%),
+		radial-gradient(circle at 40% 80%, rgba(124, 58, 237, 0.07) 0%, transparent 50%);
+	z-index: 0;
 }
 
 .parent::after {
@@ -29,13 +29,13 @@
 	right: 0;
 	bottom: 0;
 	background-image: 
-		linear-gradient(90deg, transparent 98%, rgba(0, 206, 209, 0.3) 100%),
-		linear-gradient(0deg, transparent 98%, rgba(79, 70, 229, 0.3) 100%),
-		linear-gradient(45deg, transparent 98%, rgba(124, 58, 237, 0.3) 100%),
-		linear-gradient(-45deg, transparent 98%, rgba(0, 206, 209, 0.3) 100%);
+		linear-gradient(90deg, transparent 98%, rgba(0, 206, 209, 0.15) 100%),
+		linear-gradient(0deg, transparent 98%, rgba(79, 70, 229, 0.15) 100%),
+		linear-gradient(45deg, transparent 98%, rgba(124, 58, 237, 0.15) 100%),
+		linear-gradient(-45deg, transparent 98%, rgba(0, 206, 209, 0.15) 100%);
 	background-size: 100px 100px, 100px 100px, 150px 150px, 150px 150px;
 	animation: gridMove 20s linear infinite;
-	z-index: 1;
+	z-index: 0;
 }
 
 /* Floating Neural Particles - Now covers entire page */
@@ -45,7 +45,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 2;
+	z-index: 1;
 	pointer-events: none;
 }
 
@@ -107,7 +107,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 2;
+	z-index: 1;
 	pointer-events: none;
 }
 
@@ -167,6 +167,7 @@
 	padding: 2rem 1rem;
 	position: relative;
 	overflow: hidden;
+	z-index: 5;
 }
 
 /* Remove the old hero background effects since they're now on the parent */
@@ -223,7 +224,7 @@
 	gap: 4rem;
 	align-items: center;
 	position: relative;
-	z-index: 10;
+	z-index: 6;
 }
 
 .heroText {
@@ -279,10 +280,29 @@
 	box-shadow: 0 4px 15px rgba(0, 206, 209, 0.3);
 	border: none;
 	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.primaryBtn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, 
+		transparent, 
+		rgba(255, 255, 255, 0.2), 
+		transparent);
+	transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primaryBtn:hover::before {
+	left: 100%;
 }
 
 .primaryBtn:hover {
-	transform: translateY(-2px);
 	box-shadow: 0 8px 25px rgba(0, 206, 209, 0.4);
 }
 
@@ -297,12 +317,32 @@
 	transition: all 0.3s ease;
 	border: 2px solid #00ced1;
 	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.secondaryBtn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, 
+		transparent, 
+		rgba(0, 206, 209, 0.1), 
+		transparent);
+	transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.secondaryBtn:hover::before {
+	left: 100%;
 }
 
 .secondaryBtn:hover {
 	background: #00ced1;
 	color: #000000;
-	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(0, 206, 209, 0.3);
 }
 
 .heroImage {
@@ -323,7 +363,12 @@
 	padding: 6rem 1rem;
 	background: rgba(255, 255, 255, 0.02);
 	position: relative;
-	z-index: 10;
+	z-index: 5;
+	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.features:hover {
+	background: rgba(255, 255, 255, 0.03);
 }
 
 .featuresContainer {
@@ -352,14 +397,35 @@
 	padding: 2rem 1.5rem;
 	border-radius: 20px;
 	border: 1px solid rgba(255, 255, 255, 0.1);
-	transition: all 0.3s ease;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	backdrop-filter: blur(10px);
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.featureCard::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, 
+		transparent, 
+		rgba(0, 206, 209, 0.1), 
+		transparent);
+	transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featureCard:hover::before {
+	left: 100%;
 }
 
 .featureCard:hover {
-	transform: translateY(-5px);
 	background: rgba(255, 255, 255, 0.08);
 	border-color: rgba(0, 206, 209, 0.3);
+	box-shadow: 0 15px 35px rgba(0, 206, 209, 0.2);
 }
 
 .featureIcon {
@@ -372,12 +438,22 @@
 	font-size: 1.3rem;
 	font-weight: 600;
 	margin-bottom: 1rem;
+	transition: color 0.3s ease;
+}
+
+.featureCard:hover h3 {
+	color: #00ced1;
 }
 
 .featureCard p {
 	color: #b8bcc4;
 	font-size: 1rem;
 	line-height: 1.6;
+	transition: color 0.3s ease;
+}
+
+.featureCard:hover p {
+	color: #ffffff;
 }
 
 /* Benefits Section */
@@ -385,7 +461,13 @@
 	padding: 4rem 1rem;
 	background: linear-gradient(135deg, rgba(0, 206, 209, 0.1) 0%, rgba(0, 180, 180, 0.1) 100%);
 	position: relative;
-	z-index: 10;
+	z-index: 5;
+	transition: all 0.4s cubic-bezier(0.4, 0, 2, 1);
+	cursor: pointer;
+}
+
+.benefits:hover {
+	background: linear-gradient(135deg, rgba(0, 206, 209, 0.15) 0%, rgba(0, 180, 180, 0.15) 100%);
 }
 
 .benefitsContainer {
@@ -401,13 +483,18 @@
 	line-height: 1.6;
 	margin-bottom: 1rem;
 	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	transition: all 0.3s ease;
+}
+
+.benefits:hover .benefitsText p {
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .benefitsText p:last-child {
 	margin-bottom: 0;
 }
 
-/* Original Section Styling */
+/* Enhanced button interactions */
 .btn {
 	background: linear-gradient(135deg, #00ced1 0%, #00b4b4 100%);
 	padding: 1rem 2rem;
@@ -417,14 +504,39 @@
 	font-size: 1.1rem;
 	font-weight: 600;
 	text-decoration: none;
-	transition: all 0.3s ease;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	box-shadow: 0 4px 15px rgba(0, 206, 209, 0.3);
 	display: inline-block;
+	position: relative;
+	overflow: hidden;
+}
+
+.btn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, 
+		transparent, 
+		rgba(255, 255, 255, 0.2), 
+		transparent);
+	transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover::before {
+	left: 100%;
 }
 
 .btn:hover {
-	transform: translateY(-2px);
+	transform: translateY(-3px);
 	box-shadow: 0 8px 25px rgba(0, 206, 209, 0.4);
+}
+
+.btn:active {
+	transform: translateY(-1px);
+	transition: all 0.1s ease;
 }
 
 .ui1 {

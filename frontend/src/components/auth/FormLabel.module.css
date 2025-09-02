@@ -8,13 +8,27 @@
 
 .label label{
     align-self: flex-start;
-    margin-bottom: 2%;
-    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .label input{
     width: 100%;
     box-sizing: border-box;
     border-radius: 10px;
-    background-color: #f5f5f5e1;
+    background-color: #0e1218;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .label label { font-size: 1rem; }
+    .label input { padding: 0.85rem 1rem; font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+    .label label { font-size: 0.95rem; }
+    .label input { padding: 0.85rem 1rem; font-size: 0.95rem; }
 }
