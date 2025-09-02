@@ -1,18 +1,16 @@
 import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import styles from "./Chat.module.css";
 import ChatItem from "../components/chat/ChatItem";
 import {
-	deleteAllChats,
 	getAllChats,
 	postChatRequest,
 } from "../../helpers/api-functions";
 
 import sendIcon from "/logos/send-icon.png";
 import noMsgBot from "/logos/no-msg2.png";
-import upArrow from "/logos/up-arrow.png";
 import ChatLoading from "../components/chat/ChatLoading";
 
 import { useAuth } from "../context/context";
@@ -31,7 +29,6 @@ const Chat = () => {
 	const [chatMessages, setChatMessages] = useState<Message[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isLoadingChats, setIsLoadingChats] = useState<boolean>(true);
-	const [deleteChatToggle, setDeleteChatToggle] = useState<boolean>(false);
 
 	const inputRef = useRef<HTMLTextAreaElement | null>(null);
 	const messageContainerRef = useRef<HTMLDivElement | null>(null);
@@ -96,22 +93,6 @@ const Chat = () => {
 		}
 	};
 
-	const deleteChatsToggle = () => {
-		setDeleteChatToggle((prevState) => !prevState);
-	};
-
-	const clearChatsHandler = async () => {
-		try {
-			toast.loading("Deleting Messages ...", { id: "delete-msgs" });
-			const data = await deleteAllChats();
-			setChatMessages(data.chats);
-			setDeleteChatToggle(false);
-			toast.success("Deleted Messages Successfully", { id: "delete-msgs" });
-		} catch (error: any) {
-			toast.error(error.message, { id: "delete-msgs" });
-		}
-	};
-
 	const variants = {
 		animate: {
 			y: [0, -10, 0, -10, 0],
@@ -122,62 +103,22 @@ const Chat = () => {
 		},
 	};
 
-	const logo = {
-		animate: {
-			y: [0, -5, 0, -5, 0],
-			transition: {
-				type: "spring",
-				y: {
-					repeat: Infinity,
-					duration: 4,
-					stiffness: 100,
-					damping: 5,
-				},
-			},
-		},
-		animateReverse: {
-			transform: "rotate(180deg)",
-			y: "-4",
-			transition: {
-				duration: 0.5,
-			},
-		},
-		initialBtn: {
-			y: "4",
-			opacity: 0,
-		},
-		animateBtn: {
-			y: 0,
-			opacity: 1,
-			transition: {
-				duration: 0.5,
-			},
-		},
-		exitBtn: {
-			y: "-20",
-			opacity: 0,
-			transition: {
-				duration: 0.5,
-			},
-		},
-	};
+
 
 	const placeHolder = (
-		<div className={styles.no_msgs}>
-			<h3>Gemini 2.0 Flash</h3>
+		<>
+<div className={styles.no_msgs}>
+			<h3 >Fikra Ai</h3>
 			<motion.div
 				className={styles.no_msg_logo}
 				variants={variants}
 				animate='animate'>
 				<img alt='no msg bot' src={noMsgBot}></img>
 			</motion.div>
-			<p>
-				How can I help you today?
-			</p>
-			<small className={styles.hint}>
-				💡 Press Enter to send, Shift+Enter for new line
-			</small>
 		</div>
+		<p className={styles.hint} style={{ textAlign: "center" }}>How can I help you today?</p>
+		</>
+		
 	);
 
 	const chats = chatMessages.map((chat, index) => (
@@ -202,29 +143,6 @@ const Chat = () => {
 			</div>
 			<div className={styles.inputContainer}>
 				<div className={styles.inputArea}>
-					<div className={styles.eraseMsgs}>
-						<motion.img
-							variants={logo}
-							animate={!deleteChatToggle ? "animate" : "animateReverse"}
-							src={upArrow}
-							alt='top icon'
-							onClick={deleteChatsToggle}
-							className={styles.eraseIcon}
-						/>
-						<AnimatePresence>
-							{deleteChatToggle && (
-								<motion.button
-									className={styles.eraseBtn}
-									onClick={clearChatsHandler}
-									variants={logo}
-									initial='initialBtn'
-									animate='animateBtn'
-									exit='exitBtn'>
-									CLEAR CHATS
-								</motion.button>
-							)}
-						</AnimatePresence>
-					</div>
 					<div className={styles.inputWrapper}>
 						<textarea
 							className={styles.textArea}

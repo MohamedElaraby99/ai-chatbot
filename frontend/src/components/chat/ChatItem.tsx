@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import styles from "./ChatItem.module.css";
 import 'highlight.js/styles/atom-one-dark.css';
 
-import botIcon from "/logos/bot.png";
 import { useAuth } from "../../context/context";
 
 type Props = {
@@ -43,9 +42,7 @@ const ChatItem = (props: Props) => {
 				initial="hidden"
 				animate="visible"
 			>
-				<div className={`${styles.avatar}`}>
-					<img src={botIcon} alt='chat bot icon'></img>
-				</div>
+
 				<div className={`${styles.msg} ${styles.bot_msg} markdown-body`}>
 					<ReactMarkdown remarkPlugins={[reactGFM]} rehypePlugins={[rehypeHighlight]}>  
 						{props.content}
@@ -63,10 +60,6 @@ const ChatItem = (props: Props) => {
 				initial="hidden"
 				animate="visible"
 			>
-				<div className={`${styles.avatar} ${styles.user_avatar}`}>
-					{auth?.user?.name?.[0] || 'U'}
-					{auth?.user?.name?.split(" ")?.[1]?.[0] || ''}
-				</div>
 				<div className={styles.msg}>
 					<p>{props.content}</p>
 				</div>

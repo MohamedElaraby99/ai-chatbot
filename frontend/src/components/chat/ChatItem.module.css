@@ -3,7 +3,7 @@
 	display: flex;
 	width: 100%;
 	margin: 1.5rem 0;
-	justify-content: center;
+	justify-content: start;
 }
 
 .messageWrapper:has(.user_parent) {
@@ -11,7 +11,7 @@
 }
 
 .messageWrapper:has(.bot_parent) {
-	justify-content: flex-start;
+	justify-content: center;
 }
 
 /* ChatGPT-like Chat Layout */
