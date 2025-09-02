@@ -119,7 +119,7 @@ app.use("/api/", demoRoutes);
 mongoose
 	.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/ai")
 	.then(() => {
-		const port = process.env.PORT || 5001;
+		const port = Number(process.env.PORT) || 5001;
 		const host = process.env.HOST || '0.0.0.0'; // Bind to all interfaces
 		
 		app.listen(port, host, () => {
@@ -132,7 +132,7 @@ mongoose
 		console.log("MongoDB connection error:", err.message);
 		console.log("Make sure MongoDB is running locally on port 27017");
 		// Start server anyway for development
-		const port = process.env.PORT || 5001;
+		const port = Number(process.env.PORT) || 5001;
 		const host = process.env.HOST || '0.0.0.0';
 		
 		app.listen(port, host, () => {
