@@ -36,7 +36,7 @@
 	flex-direction: column;
 	width: 100%;
 	max-width: 100%;
-	align-items: stretch;
+	align-items: anchor-center;
 }
 
 /* Ensure proper spacing between messages */
@@ -61,9 +61,6 @@
 	left: 0;
 	right: 0;
 	z-index: 10;
-	
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	/* Center the input area on desktop like ChatGPT */
 	max-width: 768px;
 	margin: 0 auto;
 	width: 100%;
@@ -195,11 +192,77 @@
 
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+	.parent {
+		padding-top: 70px;
+	}
+	
+	.chat {
+		max-width: 100%;
+		margin: 0;
+		padding: 0 0.5rem 120px 0.5rem;
+		border-radius: 0;
+	}
+	
+	.inputContainer {
+		padding: 10px;
+		max-width: 90%;
+		margin: 0;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	
+	.inputWrapper {
+		padding: 0.5rem;
+		border-radius: 20px;
+		margin-bottom: 0.5rem;
+	}
+	
+	.textArea {
+		font-size: 0.9rem;
+		min-height: 20px;
+		max-height: 100px;
+	}
+	
+	.icon {
+		padding: 0.4rem;
+		min-width: 2.2rem;
+		min-height: 2.2rem;
+	}
+	
+	.icon img {
+		width: 1.1rem;
+		height: 1.1rem;
+	}
+	
+	.no_msgs {
+		padding: 1.5rem 0.5rem;
+	}
+	
+	.no_msgs h3 {
+		font-size: 1.3rem;
+	}
+	
+	.no_msg_logo {
+		width: 2.5rem;
+		height: 2.5rem;
+		margin: 1rem 0;
+	}
+	
+	.no_msgs p {
+		font-size: 1rem;
+		max-width: 300px;
+	}
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
 	.chat {
 		max-width: 100%;
 		margin: 0;
 		padding: 0 1rem 120px 1rem;
+		border-radius: 10px;
 	}
 	
 	.inputContainer {
@@ -217,7 +280,17 @@
 	}
 	
 	.inputWrapper {
-		padding: 0.5rem;
+		padding: 0.6rem;
+		border-radius: 16px;
+	}
+	
+	.textArea {
+		font-size: 0.95rem;
+	}
+	
+	.icon {
+		min-width: 2.4rem;
+		min-height: 2.4rem;
 	}
 	
 	.no_msgs {
@@ -238,19 +311,111 @@
 @media (min-width: 769px) and (max-width: 1024px) {
 	.chat {
 		max-width: 90%;
+		padding: 0 1.5rem 120px 1.5rem;
 	}
 	
 	.inputContainer {
 		max-width: 90%;
+		padding: 1.5rem;
+	}
+	
+	.inputWrapper {
+		padding: 0.75rem;
+	}
+	
+	.icon {
+		min-width: 2.5rem;
+		min-height: 2.5rem;
 	}
 }
 
 @media (min-width: 1025px) {
 	.chat {
 		max-width: 768px;
+		padding: 0 2rem 120px 2rem;
 	}
 	
 	.inputContainer {
 		max-width: 768px;
+		
+	}
+	
+	.inputWrapper {
+		padding: 0.75rem;
+	}
+	
+	.icon {
+		min-width: 2.5rem;
+		min-height: 2.5rem;
+	}
+}
+
+/* Modern Custom Scrollbar */
+.chat::-webkit-scrollbar {
+	width: 8px;
+}
+
+.chat::-webkit-scrollbar-track {
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 10px;
+	margin: 10px 0;
+	backdrop-filter: blur(10px);
+}
+
+.chat::-webkit-scrollbar-thumb {
+	background: linear-gradient(135deg, rgba(79, 70, 229, 0.6) 0%, rgba(124, 58, 237, 0.6) 100%);
+	border-radius: 10px;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chat::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(135deg, rgba(79, 70, 229, 0.8) 0%, rgba(124, 58, 237, 0.8) 100%);
+	transform: scale(1.05);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.chat::-webkit-scrollbar-thumb:active {
+	background: linear-gradient(135deg, rgba(79, 70, 229, 1) 0%, rgba(124, 58, 237, 1) 100%);
+	transform: scale(0.98);
+}
+
+.chat::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+/* Firefox Scrollbar */
+.chat {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(79, 70, 229, 0.6) rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile Scrollbar Adjustments */
+@media (max-width: 768px) {
+	.chat::-webkit-scrollbar {
+		width: 6px;
+	}
+	
+	.chat::-webkit-scrollbar-track {
+		margin: 5px 0;
+	}
+	
+	.chat::-webkit-scrollbar-thumb {
+		border-width: 1px;
+	}
+}
+
+@media (max-width: 480px) {
+	.chat::-webkit-scrollbar {
+		width: 4px;
+	}
+	
+	.chat::-webkit-scrollbar-track {
+		margin: 3px 0;
+	}
+	
+	.chat::-webkit-scrollbar-thumb {
+		border-width: 1px;
 	}
 }
