@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { submitDemoRequest } from "../../helpers/api-functions";
 import styles from "./Demo.module.css";
 
 const Demo = () => {
@@ -28,26 +29,15 @@ const Demo = () => {
 		setSubmitStatus("idle");
 
 		try {
-			const response = await fetch('/api/demo-request', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(formData)
+			await submitDemoRequest(formData);
+			setSubmitStatus("success");
+			setFormData({
+				name: "",
+				email: "",
+				company: "",
+				useCase: "",
+				message: ""
 			});
-
-			if (response.ok) {
-				setSubmitStatus("success");
-				setFormData({
-					name: "",
-					email: "",
-					company: "",
-					useCase: "",
-					message: ""
-				});
-			} else {
-				setSubmitStatus("error");
-			}
 		} catch (error) {
 			console.error('Error submitting demo request:', error);
 			setSubmitStatus("error");
