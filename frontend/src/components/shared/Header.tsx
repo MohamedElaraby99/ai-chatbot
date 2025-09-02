@@ -20,13 +20,6 @@ const Header = () => {
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
-	const toggleLanguage = () => {
-		if (auth) {
-			const newLang = auth.language === "en" ? "ar" : "en";
-			auth.setLanguage(newLang);
-		}
-	};
-
 	const toggleMobileMenu = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
@@ -66,19 +59,6 @@ const Header = () => {
 					<div className={styles.navLinks}>
 						{links}
 					</div>
-					
-					{/* Language Toggle */}
-					<motion.button
-						className={styles.languageToggle}
-						onClick={toggleLanguage}
-						whileHover={{ scale: 1.05, y: -2 }}
-						whileTap={{ scale: 0.95 }}
-						transition={{ duration: 0.2 }}
-					>
-						<span className={styles.languageText}>
-							{auth?.language === "ar" ? "🇺🇸 EN" : "🇸🇦 عربي"}
-						</span>
-					</motion.button>
 				</nav>
 
 				{/* Mobile Menu Button */}
@@ -103,13 +83,6 @@ const Header = () => {
 			>
 				<div className={styles.mobileNavLinks}>
 					{links}
-					<motion.button
-						className={styles.mobileLanguageToggle}
-						onClick={toggleLanguage}
-						whileTap={{ scale: 0.95 }}
-					>
-						{auth?.language === "ar" ? "🇺🇸 Switch to English" : "🇸🇦 التبديل إلى العربية"}
-					</motion.button>
 				</div>
 			</motion.div>
 		</header>

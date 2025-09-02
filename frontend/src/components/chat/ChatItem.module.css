@@ -3,6 +3,7 @@
 	display: flex;
 	width: 100%;
 	margin: 1.5rem 0;
+	justify-content: center;
 }
 
 .messageWrapper:has(.user_parent) {
@@ -20,10 +21,23 @@
 	box-sizing: border-box;
 	padding: 1rem 1.5rem;
 	transition: all 0.3s ease;
-	max-width: 80%;
+	max-width: 85%;
 	border-radius: 20px;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ensure messages don't get too wide on large screens like ChatGPT */
+@media (min-width: 1025px) {
+	.parent {
+		max-width: 75%;
+	}
+}
+
+@media (min-width: 1440px) {
+	.parent {
+		max-width: 70%;
+	}
 }
 
 .parent:hover {
@@ -150,49 +164,7 @@
 	margin: 0.5rem 0;
 }
 
-/* RTL Support for Arabic */
-[dir="rtl"] .messageWrapper:has(.user_parent) {
-	justify-content: flex-start;
-}
 
-[dir="rtl"] .messageWrapper:has(.bot_parent) {
-	justify-content: flex-end;
-}
-
-[dir="rtl"] .bot_parent {
-	border-left: none;
-	border-right: 4px solid #4f46e5;
-}
-
-[dir="rtl"] .user_parent {
-	border-right: none;
-	border-left: 4px solid #22c55e;
-}
-
-[dir="rtl"] .msg {
-	font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-[dir="rtl"] .user_avatar {
-	font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-[dir="rtl"] .msg h1, [dir="rtl"] .msg h2, [dir="rtl"] .msg h3, 
-[dir="rtl"] .msg h4, [dir="rtl"] .msg h5, [dir="rtl"] .msg h6 {
-	font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-[dir="rtl"] .msg blockquote {
-	border-left: none;
-	border-right: 4px solid #4f46e5;
-	padding-left: 0;
-	padding-right: 1rem;
-}
-
-[dir="rtl"] .msg ul, [dir="rtl"] .msg ol {
-	padding-left: 0;
-	padding-right: 1.5rem;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
