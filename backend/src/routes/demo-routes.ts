@@ -5,7 +5,7 @@ import {
 	getDemoRequestById,
 	updateDemoRequestStatus,
 	deleteDemoRequest
-} from '../controllers/demo-controllers';
+} from '../controllers/demo-controllers.js';
 
 const router = express.Router();
 

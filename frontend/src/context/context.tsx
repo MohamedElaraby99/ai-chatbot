@@ -3,7 +3,7 @@ import {
 	getAuthStatus,
 	logoutUser,
 	userSignup,
-} from "../../helpers/api-functions";
+} from "../helpers/api-functions";
 import {
 	ReactNode,
 	createContext,

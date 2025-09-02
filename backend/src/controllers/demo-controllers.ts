@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Demo from '../models/demo-model';
+import Demo from '../models/demo-model.js';
 
 // Submit a new demo request
 export const submitDemoRequest = async (req: Request, res: Response) => {

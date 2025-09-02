@@ -14,8 +14,7 @@ const getApiBaseUrl = () => {
 	const protocol = window.location.protocol;
 	
 	console.log('Environment detection - hostname:', hostname, 'port:', port, 'protocol:', protocol);
-	console.log('import.meta.env.DEV:', import.meta.env.DEV);
-	console.log('import.meta.env.MODE:', import.meta.env.MODE);
+	// Environment info logged for debugging
 	
 	// Enhanced development detection
 	const isDevelopment = 
@@ -30,8 +29,7 @@ const getApiBaseUrl = () => {
 		port === '5173' || 
 		port === '5174' ||
 		// Vite dev mode
-		import.meta.env.DEV === true ||
-		import.meta.env.MODE === 'development';
+		(import.meta.env?.DEV === true);
 	
 	console.log('Is development environment:', isDevelopment);
 	

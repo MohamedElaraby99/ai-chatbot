@@ -8,7 +8,7 @@ import {
 	getAllChats,
 	postChatRequest,
 	deleteAllChats,
-} from "../../helpers/api-functions";
+} from "../helpers/api-functions";
 
 import sendIcon from "/logos/send-icon.png";
 import noMsgBot from "/logos/no-msg2.png";

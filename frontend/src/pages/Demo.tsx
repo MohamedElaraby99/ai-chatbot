@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { submitDemoRequest } from "../../helpers/api-functions";
+import { submitDemoRequest } from "../helpers/api-functions";
 import styles from "./Demo.module.css";
 
 const Demo = () => {
