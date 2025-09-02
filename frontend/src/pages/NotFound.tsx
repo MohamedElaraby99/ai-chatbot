@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react' // Not needed in modern React with new JSX transform
 
 const NotFound = () => {
   return (

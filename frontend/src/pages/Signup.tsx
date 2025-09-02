@@ -11,7 +11,7 @@ import Button from "../components/shared/Button";
 
 import { useAuth } from "../context/context";
 
-import axios from "axios";
+// import axios from "axios"; // Using api-functions instead
 import toast from "react-hot-toast";
 
 const Signup = () => {

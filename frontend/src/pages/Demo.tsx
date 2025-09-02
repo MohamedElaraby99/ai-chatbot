@@ -48,8 +48,29 @@ const Demo = () => {
 
 	const fadeInUp = {
 		initial: { opacity: 0, y: 60 },
-		animate: { opacity: 1, y: 0 },
-		transition: { duration: 0.8, ease: "easeOut" }
+		animate: { 
+			opacity: 1, 
+			y: 0,
+			transition: { duration: 0.8, ease: "easeOut" }
+		}
+	};
+
+	const fadeInUpDelayed = {
+		initial: { opacity: 0, y: 60 },
+		animate: { 
+			opacity: 1, 
+			y: 0,
+			transition: { duration: 0.8, ease: "easeOut", delay: 0.2 }
+		}
+	};
+
+	const fadeInUpDelayedMore = {
+		initial: { opacity: 0, y: 60 },
+		animate: { 
+			opacity: 1, 
+			y: 0,
+			transition: { duration: 0.8, ease: "easeOut", delay: 0.4 }
+		}
 	};
 
 	return (
@@ -83,10 +104,9 @@ const Demo = () => {
 				<motion.form 
 					className={styles.form}
 					onSubmit={handleSubmit}
-					variants={fadeInUp}
+					variants={fadeInUpDelayed}
 					initial="initial"
 					animate="animate"
-					transition={{ delay: 0.2 }}
 				>
 					<div className={styles.formGroup}>
 						<label htmlFor="name">Full Name *</label>
@@ -190,10 +210,9 @@ const Demo = () => {
 
 				<motion.div 
 					className={styles.info}
-					variants={fadeInUp}
+					variants={fadeInUpDelayedMore}
 					initial="initial"
 					animate="animate"
-					transition={{ delay: 0.4 }}
 				>
 					<h3>What happens next?</h3>
 					<div className={styles.steps}>

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import styles from "./ChatItem.module.css";
 import 'highlight.js/styles/atom-one-dark.css';
 
-import { useAuth } from "../../context/context";
+// import { useAuth } from "../../context/context"; // Currently unused
 
 type Props = {
 	content: string;
@@ -15,7 +15,7 @@ type Props = {
 
 const ChatItem = (props: Props) => {
 	
-	const auth = useAuth();
+	// const auth = useAuth(); // Currently unused
 
 	const messageVariants = {
 		hidden: { 

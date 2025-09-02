@@ -11,7 +11,7 @@ import Button from "../components/shared/Button";
 
 import styles from "./AuthForm.module.css";
 
-import axios from "axios";
+// import axios from "axios"; // Using api-functions instead
 
 import { useAuth } from "../context/context";
 

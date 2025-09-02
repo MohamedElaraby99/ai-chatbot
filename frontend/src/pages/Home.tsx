@@ -223,7 +223,7 @@ const Home = () => {
 				</a>
 				<span className={styles.separator}>•</span>
 				<a href={'https://wa.me/201207039410'} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
-					WhatsApp: +20 120 703 9410
+					WhatsApp
 				</a>
 			</div>
 		</footer>
