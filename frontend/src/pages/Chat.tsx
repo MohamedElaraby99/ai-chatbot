@@ -7,6 +7,7 @@ import ChatItem from "../components/chat/ChatItem";
 import {
 	getAllChats,
 	postChatRequest,
+	deleteAllChats,
 } from "../../helpers/api-functions";
 
 import sendIcon from "/logos/send-icon.png";
@@ -29,6 +30,8 @@ const Chat = () => {
 	const [chatMessages, setChatMessages] = useState<Message[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isLoadingChats, setIsLoadingChats] = useState<boolean>(true);
+	const [isClearing, setIsClearing] = useState<boolean>(false);
+	const [showConfirm, setShowConfirm] = useState<boolean>(false);
 
 	const inputRef = useRef<HTMLTextAreaElement | null>(null);
 	const messageContainerRef = useRef<HTMLDivElement | null>(null);
@@ -129,6 +132,29 @@ const Chat = () => {
 		/>
 	));
 
+	const performClearChats = async () => {
+		if (isLoading || isLoadingChats || isClearing) return;
+		try {
+			setIsClearing(true);
+			await deleteAllChats();
+			setChatMessages([]);
+			toast.success("Chat history cleared");
+		} catch (error: any) {
+			toast.error(error.message || "Failed to clear chats");
+		} finally {
+			setIsClearing(false);
+			setShowConfirm(false);
+		}
+	};
+
+	const closeConfirmModal = () => {
+		setShowConfirm(false);
+	};
+
+	const openConfirmModal = () => {
+		setShowConfirm(true);
+	};
+
 	return (
 		<div className={styles.parent}>
 			<div className={styles.chat} ref={messageContainerRef}>
@@ -144,6 +170,20 @@ const Chat = () => {
 			<div className={styles.inputContainer}>
 				<div className={styles.inputArea}>
 					<div className={styles.inputWrapper}>
+						{chatMessages.length > 0 && !isClearing && (
+							<motion.button 
+								className={`${styles.icon} ${styles.clearButton} ${(isLoading || isLoadingChats) ? styles.disabled : ''}`} 
+								onClick={openConfirmModal}
+								disabled={isLoading || isLoadingChats}
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								transition={{ duration: 0.1 }}
+								aria-label="Clear chat history"
+								title="Clear chat history"
+							>
+								Clear
+							</motion.button>
+						)}
 						<textarea
 							className={styles.textArea}
 							maxLength={1500}
@@ -172,6 +212,19 @@ const Chat = () => {
 					</div>
 				</div>
 			</div>
+
+			{showConfirm && (
+				<div className={styles.confirmModalOverlay}>
+					<div className={styles.confirmModalContent}>
+						<h2>Confirm Clear Chat History</h2>
+						<p>Are you sure you want to delete all chat history? This action cannot be undone.</p>
+						<div className={styles.confirmModalButtons}>
+							<button onClick={closeConfirmModal} className={styles.cancelButton}>Cancel</button>
+							<button onClick={performClearChats} className={styles.confirmButton}>Clear</button>
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

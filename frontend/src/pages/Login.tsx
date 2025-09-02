@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,13 @@ const Login = () => {
     const navigate = useNavigate()
 
 	const auth = useAuth();
+
+	// If already logged in, redirect to chat
+	useEffect(() => {
+		if (auth?.isLoggedIn) {
+			navigate('/chat', { replace: true });
+		}
+	}, [auth?.isLoggedIn, navigate]);
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();

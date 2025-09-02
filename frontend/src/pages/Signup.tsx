@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import bot2 from "/page-photos/robot-2.png";
@@ -22,6 +22,13 @@ const Signup = () => {
 	const navigate = useNavigate();
 
 	const auth = useAuth();
+
+	// If already logged in, redirect to chat
+	useEffect(() => {
+		if (auth?.isLoggedIn) {
+			navigate('/chat', { replace: true });
+		}
+	}, [auth?.isLoggedIn, navigate]);
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();

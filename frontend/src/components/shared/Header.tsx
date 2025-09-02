@@ -46,6 +46,7 @@ const Header = () => {
 		links = (
 			<>
 				<NavigationLink to='/' text='Logout' onClick={auth.logout} />
+				<NavigationLink to='/chat' text='Chat' onClick={async () => { setIsMobileMenuOpen(false); }} />
 			</>
 		);
 	} else {

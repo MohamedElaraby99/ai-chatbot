@@ -34,6 +34,7 @@ const Home = () => {
 	};
 
 	return (
+		<>
 		<div className={styles.parent}>
 			{/* Neural Network Background Elements - Now covers entire page */}
 			<div className={styles.neuralParticles}>
@@ -215,6 +216,18 @@ const Home = () => {
 				</Section>
 			</motion.div>
 		</div>
+		<footer className={styles.footer}>
+			<div className={styles.footerContent}>
+				<a href={'https://fikra.solutions/'} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+					Fikra Software
+				</a>
+				<span className={styles.separator}>•</span>
+				<a href={'https://wa.me/201207039410'} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+					WhatsApp: +20 120 703 9410
+				</a>
+			</div>
+		</footer>
+		</>
 	);
 };
 

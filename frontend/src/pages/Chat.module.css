@@ -89,6 +89,85 @@
 	margin-bottom: 1rem;
 }
 
+.clearButton {
+	color: #ececf1;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 8px;
+	padding: 0.4rem 0.6rem;
+	font-size: 0.9rem;
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.clearButton:hover {
+	background: rgba(255, 255, 255, 0.12);
+	border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Modern confirm modal */
+.confirmModalOverlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.5);
+	backdrop-filter: blur(2px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.confirmModalContent {
+	width: 90%;
+	max-width: 420px;
+	background: rgba(20, 24, 31, 0.95);
+	border: 1px solid rgba(255,255,255,0.1);
+	border-radius: 16px;
+	padding: 1.25rem 1.25rem 1rem;
+	color: #ececf1;
+	box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.confirmModalContent h2 {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.1rem;
+}
+
+.confirmModalContent p {
+	margin: 0 0 1rem 0;
+	color: #b9bbbe;
+	font-size: 0.95rem;
+}
+
+.confirmModalButtons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.75rem;
+}
+
+.modalBtn,
+.confirmButton,
+.cancelButton {
+	border: 1px solid rgba(255,255,255,0.12);
+	background: rgba(255,255,255,0.06);
+	color: #ececf1;
+	padding: 0.55rem 0.9rem;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.cancelButton:hover {
+	background: rgba(255,255,255,0.12);
+}
+
+.confirmButton {
+	background: linear-gradient(135deg, #ff4d4d 0%, #d93636 100%);
+	border: 1px solid rgba(255,255,255,0.15);
+}
+
+.confirmButton:hover {
+	filter: brightness(1.05);
+}
+
 .inputWrapper:focus-within {
 	border-color: #10a37f;
 }
