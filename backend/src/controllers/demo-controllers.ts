@@ -14,14 +14,7 @@ export const submitDemoRequest = async (req: Request, res: Response) => {
 			});
 		}
 
-		// Validate email format
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		if (!emailRegex.test(email)) {
-			return res.status(400).json({
-				success: false,
-				message: 'Please provide a valid email address'
-			});
-		}
+		// Relax email format validation: only check non-empty (already ensured)
 
 		// Validate use case
 		const validUseCases = ['business', 'education', 'personal', 'research', 'customer-support', 'other'];
@@ -32,17 +25,18 @@ export const submitDemoRequest = async (req: Request, res: Response) => {
 			});
 		}
 
-		// Check if user already submitted a request recently (within 24 hours)
-		const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+		// Check if user already submitted a request recently (within 1 hour)
+		const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
 		const existingRequest = await Demo.findOne({
 			email: email.toLowerCase(),
-			submittedAt: { $gte: oneDayAgo }
+			submittedAt: { $gte: oneHourAgo }
 		});
 
 		if (existingRequest) {
+			res.setHeader('Retry-After', '3600'); // seconds
 			return res.status(429).json({
 				success: false,
-				message: 'You have already submitted a demo request recently. Please wait 24 hours before submitting another request.'
+				message: 'You have submitted a demo request recently. Please wait 1 hour before submitting another request.'
 			});
 		}
 

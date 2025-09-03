@@ -88,7 +88,7 @@ const Signup = () => {
 						minLength={0}
 						label='E-Mail'
 						onChange={() => {}}
-						inputPH='name@example.com'
+						inputPH='email'
 					/>
 
 					<FormLabel

@@ -155,7 +155,8 @@ export const submitDemoRequest = async (formData: {
 		console.log('Form data:', formData);
 		
 		const response = await axios.post("/demo-request", formData);
-		if (response.status !== 200) {
+		// Accept 201 Created and 200 OK
+		if (response.status !== 201 && response.status !== 200) {
 			throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 		}
 		const data = await response.data;
@@ -170,7 +171,14 @@ export const submitDemoRequest = async (formData: {
 			url: err.config?.url,
 			baseURL: err.config?.baseURL
 		});
-		throw new Error(`Demo request failed: ${err.message}`);
+		// Surface server-provided message when available
+		const serverMsg = err.response?.data?.message;
+		if (err.response?.status === 429) {
+			const retryAfter = err.response.headers?.['retry-after'];
+			const hint = retryAfter ? ` Please retry in ${retryAfter} seconds.` : '';
+			throw new Error(serverMsg || `Too many requests.${hint}`);
+		}
+		throw new Error(serverMsg || `Demo request failed: ${err.message}`);
 	}
 };
 

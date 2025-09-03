@@ -18,7 +18,7 @@ export const validate = (validations: ValidationChain[]) => {
 };
 
 export const loginValidator = [
-	body("email").trim().isEmail().withMessage("Email is not valid"),
+	body("email").trim().notEmpty().withMessage("Email is required"),
 	body("password")
 		.trim()
 		.isLength({ min: 8, max: 15 })
